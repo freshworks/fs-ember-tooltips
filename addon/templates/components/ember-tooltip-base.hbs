@@ -1,11 +1,21 @@
-{{#maybe-in-element this._renderElement this._awaitingTooltipElementRendered}}
+{{#if this._awaitingTooltipElementRendered}}
   <div>
     {{#if this._shouldRenderContent}}
-      {{#if (hasBlock)}}
+      {{#if (has-block)}}
         {{yield this}}
       {{else}}
         {{this.text}}
       {{/if}}
     {{/if}}
   </div>
-{{/maybe-in-element}}
+{{else}}
+  {{#in-element this._renderElement}}
+    <div>
+      {{#if (has-block)}}
+        {{yield this}}
+      {{else}}
+        {{this.text}}
+      {{/if}}
+    </div>
+  {{/in-element}}
+{{/if}}
